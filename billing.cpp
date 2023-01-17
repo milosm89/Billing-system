@@ -27,29 +27,29 @@ void Shopping::menu() {
     string email;
     string password;
 
-    cout << "\t\t\t\t__________________________________\n";
-    cout << "\t\t\t\t                                  \n";
-    cout << "\t\t\t\t           Main Menu              \n";
-    cout << "\t\t\t\t                                  \n";
-    cout << "\t\t\t\t__________________________________\n";
-    cout << "\t\t\t\t                                  \n";
-    cout << "\t\t\t\t|  1) Administrator    \n";
-    cout << "\t\t\t\t|                      \n";
-    cout << "\t\t\t\t|  2) Bayer            \n";
-    cout << "\t\t\t\t|                      \n";
-    cout << "\t\t\t\t|  3) Exit             \n";
-    cout << "\t\t\t\t|                      \n";
-    cout << "\t\t\t\t   Please select!";
+    cout << "\t__________________________________\n";
+    cout << "\t                                  \n";
+    cout << "\t           Main Menu              \n";
+    cout << "\t                                  \n";
+    cout << "\t__________________________________\n";
+    cout << "\t                                  \n";
+    cout << "\t|  1) Administrator    \n";
+    cout << "\t|                      \n";
+    cout << "\t|  2) Bayer            \n";
+    cout << "\t|                      \n";
+    cout << "\t|  3) Exit             \n";
+    cout << "\t|                      \n";
+    cout << "\t   Please select!: ";
     cin >> choice;
     cout << endl;
 
     switch (choice)
     {
     case 1:
-        cout << "\t\t\t\t   Please login!  \n";
-        cout << "\t\t\t\t   Enter Email    \n";
+        cout << "\tPlease login!  \n";
+        cout << "\tEnter Email    \n";
         cin >> email;
-        cout << "\t\t\t\t   Enter Password \n";
+        cout << "\tEnter Password \n";
         cin >> password;
 
         if (email == "admin@admin.com" && password == "admin123")
@@ -84,7 +84,7 @@ void Shopping::add() {
     float d;
     string name;
 
-    cout <<"\n\n\t\t\t Add new product \n";
+    cout <<"\n\n\t Add new product \n";
     cout <<"\n\n\t Product code of the product  \n";
     cin >> productCode;
     cout <<"\n\n\t Name of the product  \n";
@@ -116,6 +116,7 @@ void Shopping::add() {
 
         if (token == 1)
         {
+            cout << "Product code alreday exist. Try again!" << endl;
             goto m;
 
         }else
@@ -125,7 +126,7 @@ void Shopping::add() {
             data.close();
         }
     }
-    cout <<"\n\n\t\t Record inserted!";
+    cout <<"\n\n\t Record inserted!";
 }
 
 void Shopping::edit() {
@@ -138,8 +139,8 @@ void Shopping::edit() {
     float d;
     string name;
 
-    cout <<"\n\t\t\t Edit the record";
-    cout <<"\n\t\t\t Product code";
+    cout <<"\n\tEdit the record";
+    cout <<"\n\tProduct code: \t";
     cin >> pkey;
 
     data.open("database.txt", ios::in);
@@ -156,17 +157,17 @@ void Shopping::edit() {
         {
             if (pkey == productCode)
             {
-                cout <<"\n\t\t Product new code";
+                cout <<"\n\tProduct new code: \t";
                 cin >> c;
-                cout <<"\n\t\t Name of the product";
+                cout <<"\n\tName of the product: \t";
                 cin >> name;
-                cout <<"\n\t\t Price of the product";
+                cout <<"\n\tPrice of the product: \t";
                 cin >> p;
-                cout <<"\n\t\t Discount of the product";
+                cout <<"\n\tDiscount of the product: ";
                 cin >> d;
 
                 data1<<c << " " << name << " " << p << " " << d << "\n";
-                cout <<"\n\n\t\t Record edited";
+                cout <<"\n\n\tRecord edited";
                 token++;
             }else
             {
@@ -191,8 +192,8 @@ void Shopping::rem() {
     int pkey;
     int token = 0;
     
-    cout <<"\n\t\t\t Delete the product";
-    cout <<"\n\t\t\t Product code ";
+    cout <<"\n\tDelete the product";
+    cout <<"\n\tProduct code ";
     cin >> pkey;
 
     data.open("database.txt", ios::in);
@@ -232,13 +233,13 @@ void Shopping::rem() {
 void Shopping::bayer() {
     m:
     int choice;
-    cout <<"\t\t\t\tBayer \n";
-    cout <<"\t\t\t\t______________________\n";
-    cout <<"\t\t\t\t1) Buy Product          \n";
-    cout <<"\t\t\t\t                        \n";
-    cout <<"\t\t\t\t2) Go back              \n";
+    cout <<"\tBayer \n";
+    cout <<"\t__________________________________\n";
+    cout <<"\t1) Buy Product          \n";
+    cout <<"\t                        \n";
+    cout <<"\t2) Go back              \n";
 
-    cout <<"\t\t\t\tEnter your choice:      \t";
+    cout <<"\tEnter your choice:      \t";
     cin >> choice;
 
     switch (choice)
@@ -260,9 +261,9 @@ void Shopping::bayer() {
 void Shopping::list() {
     fstream data;
     data.open("database.txt", ios::in);
-    cout <<"\n\n|____________________________________________________________\n";
+    cout <<"\n\n____________________________________________________________\n";
     cout <<"ProductNo\tName\t\tPrice\n";
-    cout <<"\n\n|____________________________________________________________\n";
+    cout <<"____________________________________________________________\n";
     data >> productCode >> productName >> price >> discount;
 
     while (!data.eof())
@@ -285,7 +286,7 @@ void Shopping::receipt() {
     float discount = 0;
     float total = 0;
 
-    cout <<"\n\n\n\t\t\t RECEIPT ";
+     cout <<"\n\n\n\t\t\t RECEIPT ";
     data.open("database.txt", ios::in);
     
     if (!data)
@@ -295,11 +296,9 @@ void Shopping::receipt() {
     {
         data.close();
         list();
-        cout <<"\n______________________________________\n";
-        cout <<"\n|                                     \n";
-        cout <<"\n       Please place the order         \n";
-        cout <<"\n|                                     \n";
-        cout <<"\n______________________________________\n";
+        cout <<"\n____________________________________________________________\n";
+        cout <<"\nPlease place the order         \n";
+        cout <<"____________________________________________________________\n\n";
 
         do
         {
@@ -332,7 +331,7 @@ void Shopping::receipt() {
             data.open("database.txt", ios::in);
             data>> productCode >> productName >> price >> discount;
 
-            while (!data.eof()) //Ok
+            while (!data.eof())
             {
                 
                 if (productCode == array_code[i])
@@ -351,20 +350,21 @@ void Shopping::receipt() {
     
     cout <<"\n\n____________________________________________________________________________________________";
     cout <<"\n Total Amount: " << total <<endl;
+    cout << endl;
 
 }
 
 void Shopping::administrator() {
     m:
     int choice;
-    cout <<"\n\n\n\t\t\t    Administrator Menu";
-    cout << "\n\t\t\t|_____1)   Add the product________|";
-    cout << "\n\t\t\t|                                 |";
-    cout << "\n\t\t\t|_____2)   Edit the product_______|";
-    cout << "\n\t\t\t|                                 |";
-    cout << "\n\t\t\t|_____3)   Delete the product_____|";
-    cout << "\n\t\t\t|                                 |";
-    cout << "\n\t\t\t|_____4)   Back to main menu______|";
+    cout <<"\n\n\n\tAdministrator Menu";
+    cout << "\n\t|_____1)   Add the product________|";
+    cout << "\n\t|                                 |";
+    cout << "\n\t|_____2)   Edit the product_______|";
+    cout << "\n\t|                                 |";
+    cout << "\n\t|_____3)   Delete the product_____|";
+    cout << "\n\t|                                 |";
+    cout << "\n\t|_____4)   Back to main menu______|";
 
     cout <<"\n\n\t Please enter yoir choice \n";
     cin >> choice;
